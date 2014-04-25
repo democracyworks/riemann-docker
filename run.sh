@@ -7,6 +7,11 @@ if [[ -z $LIBRATO_KEY ]]; then
   exit 1
 fi
 
+if [[ -n $HIPCHAT_TOKEN && -n $HIPCHAT_ROOM ]]; then
+  echo "(def hipchat-token \"$HIPCHAT_TOKEN\") (def hipchat-room \"$HIPCHAT_ROOM\")" | cat - /etc/riemann/riemann.config > temp
+  mv temp /etc/riemann/riemann.config
+fi
+
 echo "(def librato-key \"$LIBRATO_KEY\")" | cat - /etc/riemann/riemann.config > temp
 mv temp /etc/riemann/riemann.config
 
