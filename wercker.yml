@@ -18,8 +18,6 @@ deploy:
   steps:
     - add-to-known_hosts:
         hostname: vpc-gw.turbovote.org
-    - add-to-known_hosts:
-        hostname: github.com
     - mktemp:
         envvar: PRIVATEKEY_PATH
     - create-file:
