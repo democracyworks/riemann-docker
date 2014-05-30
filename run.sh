@@ -15,5 +15,4 @@ fi
 echo "(def librato-email \"$LIBRATO_EMAIL\")(def librato-key \"$LIBRATO_KEY\")" | cat - /etc/riemann/riemann.config > temp
 mv temp /etc/riemann/riemann.config
 
-riemann-dash &
 /usr/bin/riemann /etc/riemann/riemann.config
