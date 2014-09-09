@@ -1,6 +1,7 @@
 FROM quay.io/democracyworks/base
 MAINTAINER TurboVote <dev@turbovote.org>
 
+RUN apt-get update
 RUN apt-get install -y curl default-jre-headless
 
 # Download the latest .deb and install
