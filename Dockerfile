@@ -9,7 +9,7 @@ RUN curl http://aphyr.com/riemann/riemann_0.2.5_all.deb > /tmp/riemann_0.2.5_all
 RUN dpkg -i /tmp/riemann_0.2.5_all.deb
 
 # Expose the ports for inbound events and websockets
-EXPOSE 5555/udp
+EXPOSE 5555/udp 5555
 
 ADD riemann.config /etc/riemann/riemann.config
 ADD run.sh /run.sh

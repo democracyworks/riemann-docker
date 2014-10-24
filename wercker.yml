@@ -38,4 +38,4 @@ deploy:
         name: restart containers
         code: |
           if [ -n "$DOCKER1_CONTAINER" ]; then ssh -i $PRIVATEKEY_PATH -o "StrictHostKeyChecking no" -p 2222 deploy@localhost "docker stop $DOCKER1_CONTAINER"; fi
-          ssh -i $PRIVATEKEY_PATH -o "StrictHostKeyChecking no" -p 2222 deploy@localhost "docker pull quay.io/democracyworks/riemann && docker run -d -p 6666:5555/udp -e LIBRATO_EMAIL=$LIBRATO_EMAIL -e LIBRATO_KEY=$LIBRATO_KEY -e HIPCHAT_TOKEN=$HIPCHAT_TOKEN -e HIPCHAT_ROOM=$HIPCHAT_ROOM quay.io/democracyworks/riemann:$WERCKER_GIT_BRANCH "
+          ssh -i $PRIVATEKEY_PATH -o "StrictHostKeyChecking no" -p 2222 deploy@localhost "docker pull quay.io/democracyworks/riemann && docker run -d -p 6666:5555/udp -p 6666:5555 -e LIBRATO_EMAIL=$LIBRATO_EMAIL -e LIBRATO_KEY=$LIBRATO_KEY -e HIPCHAT_TOKEN=$HIPCHAT_TOKEN -e HIPCHAT_ROOM=$HIPCHAT_ROOM quay.io/democracyworks/riemann:$WERCKER_GIT_BRANCH "
