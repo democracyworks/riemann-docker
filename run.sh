@@ -7,8 +7,8 @@ if [[ -z $LIBRATO_KEY || -z $LIBRATO_EMAIL ]]; then
   exit 1
 fi
 
-if [[ -n $HIPCHAT_TOKEN && -n $HIPCHAT_ROOM ]]; then
-  echo "(def hipchat-token \"$HIPCHAT_TOKEN\") (def hipchat-room \"$HIPCHAT_ROOM\")" | cat - /etc/riemann/riemann.config > temp
+if [[ -n $SLACK_WEBHOOK_URI ]]; then
+  echo "(def slack-webhook-uri \"$SLACK_WEBHOOK_URI\")" | cat - /etc/riemann/riemann.config > temp
   mv temp /etc/riemann/riemann.config
 fi
 
