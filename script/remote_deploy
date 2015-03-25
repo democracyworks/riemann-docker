@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# This script is copied to the deploy target by the deploy script and run there.
+# You probably don't want to run it directly.
+
+set -ex
+
+DOCKER_REPO=$(echo "$DOCKER_IMAGE" | cut -d: -f1)
+
+old_container_ids=$(docker ps | grep $DOCKER_REPO | awk '{print $1}')
+
+docker pull $DOCKER_REPO
+
+if [[ -n "$old_container_ids" ]]; then
+  for cid in "$old_container_ids"; do
+    docker stop $cid
+  done
+fi
+docker run -d -p 6666:5555/udp -p 6666:5555 -e LIBRATO_EMAIL=$LIBRATO_EMAIL -e LIBRATO_KEY=$LIBRATO_KEY -e SLACK_WEBHOOK_URI=$SLACK_WEBHOOK_URI $DOCKER_IMAGE
